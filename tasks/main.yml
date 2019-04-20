@@ -3,7 +3,6 @@
   package:
     name: "*"
     update_cache: yes
-    force_apt_get: true
     state: latest
   tags:
     - skip_ansible_lint
