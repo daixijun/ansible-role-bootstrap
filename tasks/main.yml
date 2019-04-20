@@ -3,10 +3,16 @@
   package:
     name: "*"
     update_cache: yes
+    force_apt_get: true
     state: latest
   tags:
     - skip_ansible_lint
   when: upgrade
+
+- name: 安装tzdata
+  package:
+    name: tzdata
+    state: present
 
 - name: 修改时区 /etc/localtime
   file:
@@ -23,3 +29,4 @@
 - name: 设置主机名
   hostname:
     name: "{{ hostname | default(inventory_hostname) }}"
+  ignore_errors: true
