@@ -1,0 +1,25 @@
+---
+- name: 更新操作系统
+  package:
+    name: "*"
+    update_cache: yes
+    state: latest
+  tags:
+    - skip_ansible_lint
+  when: upgrade
+
+- name: 修改时区 /etc/localtime
+  file:
+    src: /usr/share/zoneinfo/{{ timezone }}
+    dest: /etc/localtime
+    force: true
+    state: link
+
+- name: 设置时区 /etc/timezone
+  copy:
+    content: "{{ timezone }}"
+    dest: /etc/timezone
+
+- name: 设置主机名
+  hostname:
+    name: "{{ hostname | default(inventory_hostname) }}"
