@@ -1,31 +1,51 @@
 ---
-- name: 更新操作系统
+- name: System upgrade
   package:
     name: "*"
     update_cache: yes
     state: latest
   tags:
     - skip_ansible_lint
-  when: upgrade
+  when: bootstrap_upgrade
 
-- name: 安装tzdata
+- name: Install package tzdata
   package:
     name: tzdata
     state: present
 
-- name: 修改时区 /etc/localtime
+- name: Symlink /etc/localtime
   file:
-    src: /usr/share/zoneinfo/{{ timezone }}
+    src: /usr/share/zoneinfo/{{ bootstrap_timezone }}
     dest: /etc/localtime
     force: true
     state: link
 
-- name: 设置时区 /etc/timezone
+- name: Change /etc/timezone
   copy:
-    content: "{{ timezone }}"
+    content: "{{ bootstrap_timezone }}"
     dest: /etc/timezone
 
-- name: 设置主机名
+- name: Change hostname
   hostname:
     name: "{{ hostname | default(inventory_hostname) }}"
   ignore_errors: true
+
+- name: PAM limits
+  pam_limits:
+    domain: "*"
+    limit_item: nofile
+    limit_type: "-"
+    value: '65535'
+
+- name: Render sysctl
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+    backup: true
+  register: sysctl_status
+
+- name: Apply sysctl
+  command: /sbin/sysctl -p
+  ignore_errors: true
+  when:
+    - sysctl_status is changed
