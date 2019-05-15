@@ -1,3 +1,4 @@
 ---
 bootstrap_timezone: Asia/Shanghai
 bootstrap_upgrade: false
+bootstrap_hostname: ''

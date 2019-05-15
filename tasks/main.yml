@@ -25,9 +25,16 @@
     content: "{{ bootstrap_timezone }}"
     dest: /etc/timezone
 
-- name: Change hostname
+- name: Update the hostname
   hostname:
-    name: "{{ hostname | default(inventory_hostname) }}"
+    name: "{% if bootstrap_hostname %}{{ bootstrap_hostname }}{% else %}{{ inventory_hostname }}{% endif %}"
+
+- name: Add hostname to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ ansible_default_ipv4.address }} {{ bootstrap_hostname }} {{ inventory_hostname }}{% if inventory_hostname != inventory_hostname_short %} {{ inventory_hostname_short }}{% endif %}"  # noqa 204
+    regexp: "^{{ ansible_default_ipv4.address }}"
+    state: present
   ignore_errors: true
 
 - name: PAM limits
