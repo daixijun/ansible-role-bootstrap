@@ -6,7 +6,7 @@
     state: latest
   tags:
     - skip_ansible_lint
-  when: bootstrap_upgrade
+  when: bootstrap_upgrade|bool
 
 - name: Install package tzdata
   package:
