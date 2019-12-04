@@ -32,7 +32,7 @@
 - name: Add hostname to /etc/hosts
   lineinfile:
     path: /etc/hosts
-    line: "{{ ansible_default_ipv4.address }} {{ bootstrap_hostname }} {{ inventory_hostname }}{% if inventory_hostname != inventory_hostname_short %} {{ inventory_hostname_short }}{% endif %}"  # noqa 204
+    line: "{{ ansible_default_ipv4.address }} {{ bootstrap_hostname }} {{ inventory_hostname }}{% if inventory_hostname != inventory_hostname_short %} {{ inventory_hostname_short }}{% endif %}" # noqa 204
     regexp: "^{{ ansible_default_ipv4.address }}"
     state: present
   ignore_errors: true
@@ -42,7 +42,8 @@
     domain: "*"
     limit_item: nofile
     limit_type: "-"
-    value: '65535'
+    value: "65535"
+  ignore_errors: true
 
 - name: Render sysctl
   template:
