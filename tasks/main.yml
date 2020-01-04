@@ -35,7 +35,7 @@
     line: "{{ ansible_default_ipv4.address }} {{ bootstrap_hostname }} {{ inventory_hostname }}{% if inventory_hostname != inventory_hostname_short %} {{ inventory_hostname_short }}{% endif %}" # noqa 204
     regexp: "^{{ ansible_default_ipv4.address }}"
     state: present
-  ignore_errors: true
+  when: ansible_virtualization_type != "docker"
 
 - name: PAM limits
   pam_limits:
@@ -44,16 +44,3 @@
     limit_type: "-"
     value: "65535"
   ignore_errors: true
-
-- name: Render sysctl
-  template:
-    src: sysctl.conf.j2
-    dest: /etc/sysctl.conf
-    backup: true
-  register: sysctl_status
-
-- name: Apply sysctl
-  command: /sbin/sysctl -p
-  ignore_errors: true
-  when:
-    - sysctl_status is changed
