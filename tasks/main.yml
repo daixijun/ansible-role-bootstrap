@@ -27,7 +27,9 @@
 
 - name: Update the hostname
   hostname:
-    name: "{% if bootstrap_hostname %}{{ bootstrap_hostname }}{% else %}{{ inventory_hostname }}{% endif %}"
+    name: "{{ bootstrap_hostname }}"
+  when:
+    - bootstrap_hostname
 
 - name: Add hostname to /etc/hosts
   lineinfile:
@@ -35,7 +37,9 @@
     line: "{{ ansible_default_ipv4.address }} {{ bootstrap_hostname }} {{ inventory_hostname }}{% if inventory_hostname != inventory_hostname_short %} {{ inventory_hostname_short }}{% endif %}" # noqa 204
     regexp: "^{{ ansible_default_ipv4.address }}"
     state: present
-  when: ansible_virtualization_type != "docker"
+  when:
+    - ansible_virtualization_type != "docker"
+    - bootstrap_hostname
 
 - name: PAM limits
   pam_limits:
