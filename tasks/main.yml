@@ -29,7 +29,7 @@
   hostname:
     name: "{{ bootstrap_hostname }}"
   when:
-    - bootstrap_hostname
+    - bootstrap_hostname|length > 0
 
 - name: Add hostname to /etc/hosts
   lineinfile:
@@ -39,12 +39,14 @@
     state: present
   when:
     - ansible_virtualization_type != "docker"
-    - bootstrap_hostname
+    - bootstrap_hostname|length > 0
 
-- name: PAM limits
+- name: PAM nofile limits
   pam_limits:
     domain: "*"
     limit_item: nofile
     limit_type: "-"
     value: "65535"
+    use_max: yes
+    dest: /etc/security/limits.d/99-nofile.conf
   ignore_errors: true
