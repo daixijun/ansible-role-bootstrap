@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.4...v0.0.5) (2020-03-29)
+
+
+### Bug Fixes
+
+* **pam:** 修改pam nofile文件路径 ([4f2796d](https://github.com/daixijun/ansible-role-bootstrap/commit/4f2796d92e12cb9190df8c522d98fdc1531bdaae))
+* bootstrap_hostname为空时不配置主机名 ([afa1f7b](https://github.com/daixijun/ansible-role-bootstrap/commit/afa1f7b0d0f116c96af3a7e6a1b1d011260a4672))
+
 ### [0.0.4](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.3...v0.0.4) (2020-01-04)
 
 
