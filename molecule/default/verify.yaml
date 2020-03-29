@@ -1,0 +1,25 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Get /etc/timezone content
+      command: cat /etc/timezone
+      register: timezone
+
+    - name: Assert timezone
+      assert:
+        that:
+          - timezone.rc == 0
+          - timezone.stdout == 'Asia/Shanghai'
+
+    - name: Stat /etc/localtime
+      stat:
+        path: /etc/localtime
+      register: localtime
+
+    - name: Assert localtime
+      assert:
+        that:
+          - localtime.stat.exists | bool
+          - localtime.stat.islink | bool
+          - localtime.stat.lnk_source == "/usr/share/zoneinfo/Asia/Shanghai"
