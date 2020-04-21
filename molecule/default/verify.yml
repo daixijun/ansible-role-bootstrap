@@ -1,6 +1,7 @@
 ---
 - name: Verify
   hosts: all
+  gather_facts: False
   tasks:
     - name: Get /etc/timezone content
       command: cat /etc/timezone
@@ -21,5 +22,5 @@
       assert:
         that:
           - localtime.stat.exists | bool
-          - localtime.stat.islink | bool
+          - localtime.stat.islnk | bool
           - localtime.stat.lnk_source == "/usr/share/zoneinfo/Asia/Shanghai"
