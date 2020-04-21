@@ -1,5 +1,9 @@
-Role name bootstrap
+daixijun.bootstrap
 =========
+
+[![Build Status](https://github.com/daixijun/ansible-role-bootstrap/workflows/build/badge.svg)](https://github.com/daixijun/ansible-role-bootstrap/actions)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-daixijun.bootstrap-660198.svg?style=flat)](https://galaxy.ansible.com/daixijun/ansible-role-bootstrap/)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/daixijun/ansible-role-bootstrap?sort=semver)](https://github.com/daixijun/ansible-role-bootstrap/tags)
 
 系统初始化
 
