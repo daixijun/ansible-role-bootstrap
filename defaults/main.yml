@@ -1,4 +1,6 @@
 ---
 bootstrap_timezone: Asia/Shanghai
 bootstrap_upgrade: false
-bootstrap_hostname: ''
+bootstrap_hostname: ""
+bootstrap_yum_repository_replace: False
+bootstrap_yum_repository_repo: "http://mirrors.aliyun.com/repo/Centos-{{ ansible_facts['distribution_major_version'] }}.repo"

@@ -1,4 +1,12 @@
 ---
+- name: Change yum repository mirrors
+  get_url:
+    url: "{{ bootstrap_yum_repository_repo }}"
+    dest: /etc/yum.repos.d/Centos-Base.repo
+    backup: True
+  when:
+    - bootstrap_yum_repository_replace|bool
+
 - name: System upgrade
   package:
     name: "*"

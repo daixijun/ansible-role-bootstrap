@@ -4,3 +4,5 @@
   become: true
   roles:
     - role: daixijun.bootstrap
+      bootstrap_upgrade: True
+      bootstrap_yum_repository_replace: True
