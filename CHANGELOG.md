@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.5...v0.0.6) (2020-04-27)
+
+
+### Features
+
+* 添加 bootstrap_yum_repository_replace 与 bootstrap_yum_repository_repo 两个变量用于替换默认yum仓库源 ([ae928a0](https://github.com/daixijun/ansible-role-bootstrap/commit/ae928a0e345a0d50941cacb6876df62ebb7a4d08))
+
 ### [0.0.5](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.4...v0.0.5) (2020-03-29)
 
 
