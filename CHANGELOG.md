@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.6...v0.0.7) (2020-06-22)
+
+
+### Bug Fixes
+
+* **limits:** 修改自定义 nofile 配置文件路径,防止被系统中其他配置覆写 ([025b3a5](https://github.com/daixijun/ansible-role-bootstrap/commit/025b3a53b02ff55e75e80b663a4946ebd15a55df))
+
 ### [0.0.6](https://github.com/daixijun/ansible-role-bootstrap/compare/v0.0.5...v0.0.6) (2020-04-27)
 
 
