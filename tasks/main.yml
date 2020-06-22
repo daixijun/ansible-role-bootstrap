@@ -56,5 +56,5 @@
     limit_type: "-"
     value: "65535"
     use_max: yes
-    dest: /etc/security/limits.d/99-nofile.conf
+    dest: /etc/security/limits.d/zz-nofile.conf
   ignore_errors: true
